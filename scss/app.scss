@@ -1,0 +1,12 @@
+$primColor: rgba(250,150,150,0.8);
+
+body {
+    background:url("../images/background.png");
+    background-repeat: repeat;
+
+    #root {
+        background-color:$primColor;
+        padding: 6px 12px;
+        min-height:500px;
+    }
+}
