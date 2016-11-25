@@ -1,6 +1,7 @@
 import * as Http from "common"
 import * as axios from "axios";
 import config from "../config/config";
+import {injectable} from "inversify";
 
 function getInstance():Axios.AxiosInstance {
     return axios.create({
@@ -9,6 +10,7 @@ function getInstance():Axios.AxiosInstance {
     });
 }
 
+@injectable()
 export default class AxiosImpl implements Http.HttpClient {
     post(path:string, params:Map<string, any /* TODO */>):Promise<Http.HttpResponse> {
         return new Promise(function (resolve, reject) {

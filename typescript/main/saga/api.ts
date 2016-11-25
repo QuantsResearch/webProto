@@ -1,13 +1,13 @@
 import {takeEveryAction} from "./custom"
-import HttpClientImpl from "../http/index"
 import {select, put, call} from 'redux-saga/effects'
 import {TodoState} from "../model/index"
 import {AddTodoAction, AddTodoExecAction, addTodoExec, incrementId as incId} from "../actions/mainAction";
 import {Todo} from "../model/reducerModel";
+import {httpClient} from "../di/index";
 
 function* saveTodo(action:any) {
     try {
-        const func = new HttpClientImpl().post;
+        const func = httpClient().post;
         const todo:Todo = { // TODO
             id:action.id,
             text:action.text,
