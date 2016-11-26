@@ -2,18 +2,22 @@ TODO modify this file.
 
 # About
 
-Sample app for developing with below tools set.
+Sample app developed with below tools set.
 
 * Client
   * Language
-    * typescript
+    * typescript 2.0
   * Framework & Library
     * react
     * redux
     * redux-saga
     * axios
-  * Task runner
+    * inversify 2.0 
+  * Build tool
     * webpack
+  * Test
+    * karma
+    * jasmine
   * Others
     * sass(scss)
     * babel-polyfill
@@ -34,11 +38,7 @@ Born from redux sample app(http://redux.js.org/docs/basics/ExampleTodoList.html)
 Install below.
 
 * sbt
-* nodejs
-* typings
-```
-npm install typings --global
-```
+* nodejs (v4.6.2)
 
 # Usage
 
@@ -81,21 +81,4 @@ sbt start
 
 IE9+ and modern browsers.
 
-# Trouble shooting.
 
-## Webpack watch mode does't work.
-
-https://webpack.github.io/docs/troubleshooting.html#watching
-
-# Future work
-
-## Set dummy parameter on react component to avoid compile error.
-
-http://www.mattgreer.org/articles/typescript-react-and-redux/
-
-Are there better (reasonable) solutions?
-
-## bundle image in jsx
-
-import * as img from "../images/hoge.png" doesn't work.
-typescript confused ...
