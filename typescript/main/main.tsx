@@ -6,18 +6,27 @@ import todoApp from "./reducers"
 import App from "./components/App"
 import {TodoState} from "./model/index"
 import createSagaMiddleware from "redux-saga"
-import {apiSaga} from "./saga/api"
+import {takeMainSaga} from "./saga/index"
 import createLogger from "./logger/logger"
 import {DataStorage} from "./storage/storage";
 import {injectable, inject} from "inversify";
 import TYPES from "./di/types";
 import "../../scss/app.scss";
 import "reflect-metadata";
+import {MainSaga} from "./saga/main";
 
 @injectable()
 export default class Main {
     private readonly dataKey:string = "data";
-    @inject(TYPES.DataStorage) private storage: DataStorage;
+    private storage: DataStorage;
+    private mainSaga: MainSaga;
+    constructor(
+        @inject(TYPES.DataStorage) storage_: DataStorage,
+        @inject(TYPES.MainSaga) mainSaga_: MainSaga
+    ) {
+        this.storage = storage_;
+        this.mainSaga = mainSaga_
+    }
 
     init():void {
         // restore data from storage
@@ -37,7 +46,7 @@ export default class Main {
                 this.storage.setItem(this.dataKey, JSON.stringify(store.getState()));
             }
         );
-        sagaMiddleware.run(apiSaga);
+        sagaMiddleware.run(takeMainSaga(this.mainSaga));
 
         // render dom
         const rootNode = document.getElementById("root")
