@@ -41,5 +41,11 @@ describe("mainSaga", function() {
             expect(callHttpClientPost.fn).toEqual(httpClient.post);
             expect(iterator.next().done).toBe(true);
         });
+        it("yield error when httpClient.post failed", function(){
+            const error = "error occurred";
+            iterator.next();
+            const result = iterator.throw && iterator.throw({error:error});
+            expect(result && result.value).toEqual(error)
+        });
     });
 });

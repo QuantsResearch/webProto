@@ -25,12 +25,6 @@ Sample app developed with below tools set.
 This is a simple Todo List App. 
 Born from redux sample app(http://redux.js.org/docs/basics/ExampleTodoList.html).
 
-# Description
-
-## Client Side
-
-* Compile typescript to ES6, and transpile ES6 to ES5 with babel. Use babel-polyfill.
-
 # Setup
 
 Install below.
@@ -79,4 +73,8 @@ sbt start
 
 IE9+ and modern browsers.
 
+# Description
 
+## Client Side
+
+* Compile typescript to ES6, and transpile ES6 to ES5 with babel. Use babel-polyfill.

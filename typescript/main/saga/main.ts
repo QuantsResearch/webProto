@@ -30,6 +30,7 @@ export class MainSaga {
         }
         catch (error) {
             alert(error.error); // TODO
+            yield error.error
         }
     }
 
