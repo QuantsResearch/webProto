@@ -29,7 +29,7 @@ export class MainSaga {
             yield call(func, "api/", <any>todo);
         }
         catch (error) {
-            alert(error); // TODO
+            alert(error.error); // TODO
         }
     }
 

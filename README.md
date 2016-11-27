@@ -1,5 +1,3 @@
-TODO modify this file.
-
 # About
 
 Sample app developed with below tools set.

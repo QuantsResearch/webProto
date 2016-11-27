@@ -2,6 +2,7 @@ const webpackConfig = require('./webpack.config.dev.js');
 module.exports = function(config) {
     config.set({
         files: [
+            'node_modules/babel-polyfill/dist/polyfill.js',
             {pattern: 'typescript/test/**/*.ts'}
         ],
         preprocessors: {
