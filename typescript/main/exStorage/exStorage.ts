@@ -23,11 +23,11 @@ export class HttpStorage implements ExStorage {
         this.httpClient = httpClient_;
     }
 
-    createTodo(todo: Todo): Promise<Response> {
+    createTodo = (todo: Todo): Promise<Response> => {
         return this.httpClient.post("api/", <any>todo)
     }
 
-    updateTodo(todo: Todo): Promise<Response> {
+    updateTodo = (todo: Todo): Promise<Response> => {
         return this.httpClient.put("api/", <any>todo)
     }
 }

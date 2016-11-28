@@ -35,7 +35,7 @@ module.exports = {
     plugins: [
         function () {
             this.plugin('watch-run', (watching, callback) => { // show message at starting build
-                console.log('\033[36m' + 'Begin compile at ' + new Date() + ' \033[39m')
+                console.log('\033[36m' + 'Begin compile at ' + new Date() + ' \033[39m');
                 callback()
             })
         },
