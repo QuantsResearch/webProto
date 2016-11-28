@@ -2,6 +2,9 @@ import * as Http from "common"
 import * as axios from "axios";
 import config from "../config/config";
 import {injectable} from "inversify";
+import AxiosXHR = Axios.AxiosXHR;
+import IPromise = Axios.IPromise;
+import {Response} from "../exStorage/exStorage";
 
 function getInstance():Axios.AxiosInstance {
     return axios.create({
@@ -12,9 +15,10 @@ function getInstance():Axios.AxiosInstance {
 
 @injectable()
 export default class AxiosImpl implements Http.HttpClient {
-    post(path:string, params:Map<string, any /* TODO */>):Promise<Http.HttpResponse> {
+    // TODO
+    private handlingResponse(response:IPromise<AxiosXHR<any>>):Promise<Response> {
         return new Promise(function (resolve, reject) {
-            getInstance().post(path, params).then(function (response: Axios.AxiosXHR<any>) {
+            response.then(function (response: Axios.AxiosXHR<any>) {
                 const data = response.data;
                 resolve({data});
             })
@@ -22,6 +26,14 @@ export default class AxiosImpl implements Http.HttpClient {
                 reject({error});
             });
         });
+    }
+
+    post(path:string, params:Map<string, any /* TODO */>):Promise<Response> {
+        return this.handlingResponse(getInstance().post(path, params));
+    }
+
+    put(path:string, params:Map<string, any /* TODO */>):Promise<Response> {
+        return this.handlingResponse(getInstance().put(path, params));
     }
 }
 

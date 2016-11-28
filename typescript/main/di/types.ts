@@ -1,4 +1,5 @@
 const TYPES = {
+    ExStorage: Symbol("ExStorage"),
     DataStorage: Symbol("DataStorage"),
     HttpClient: Symbol("HttpClient"),
     Main: Symbol("Main"),

@@ -1,17 +1,7 @@
 import {AddTodoAction, addTodo, AddTodoExecAction, addTodoExec} from "../../main/actions/mainAction";
-import kernel from "../../main/di/inversify.config"
-import TYPES from "../../main/di/types";
 import {MainSaga} from "../../main/saga/main";
 import {call, put} from "redux-saga/effects";
-import {HttpClient} from "../../main/http/common";
-
-function getMainSaga():MainSaga {
-    return kernel.get<MainSaga>(TYPES.MainSaga)
-}
-
-function getHttpClient():HttpClient {
-    return kernel.get<HttpClient>(TYPES.HttpClient)
-}
+import {getMainSaga, getExStorage} from "../testHelper/di";
 
 const saga:MainSaga = getMainSaga();
 const addTodoAction:AddTodoAction = addTodo("test");
@@ -29,16 +19,16 @@ describe("mainSaga", function() {
             expect(next.value).toEqual(put(addTodoExecAction))
         });
     });
-    describe("saveTodo", function(){
+    describe("createTodo", function(){
         let iterator:Iterator<any>;
         const addTodoExecAction:AddTodoExecAction = addTodoExec(1, "test");
         beforeEach(() => {
-           iterator = saga.saveTodo(addTodoExecAction)
+           iterator = saga.createTodo(addTodoExecAction)
         });
         it("call httpClient.post with args and finish", function(){
-            const httpClient = getHttpClient();
+            const exStorage = getExStorage();
             const callHttpClientPost = iterator.next().value.CALL;
-            expect(callHttpClientPost.fn).toEqual(httpClient.post);
+            expect(callHttpClientPost.fn).toEqual(exStorage.createTodo);
             expect(iterator.next().done).toBe(true);
         });
         it("yield error when httpClient.post failed", function(){

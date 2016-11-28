@@ -3,7 +3,7 @@ module.exports = function(config) {
     config.set({
         files: [
             'node_modules/babel-polyfill/dist/polyfill.js',
-            {pattern: 'typescript/test/**/*.ts'}
+            {pattern: 'typescript/test/!(*testHelper)**/*.ts'}
         ],
         preprocessors: {
             'typescript/test/**/*.ts': ['webpack']

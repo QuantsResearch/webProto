@@ -1,32 +1,44 @@
 import {select, put, call} from 'redux-saga/effects'
 import {TodoState} from "../model/index"
-import {AddTodoAction, AddTodoExecAction, addTodoExec, incrementId as incId} from "../actions/mainAction";
+import {
+    AddTodoAction, AddTodoExecAction, addTodoExec, incrementId as incId,
+    ToggleTodoAction
+} from "../actions/mainAction";
 import {Todo} from "../model/reducerModel";
 import {injectable, inject} from "inversify";
 import TYPES from "../di/types";
-import {HttpClient} from "../http/common";
 import "reflect-metadata";
+import {ExStorage} from "../exStorage/exStorage";
 
 @injectable()
 export class MainSaga {
 
-    private httpClient: HttpClient;
+    private exStorage: ExStorage;
     constructor(
-        @inject(TYPES.HttpClient) httpClient_: HttpClient
+        @inject(TYPES.ExStorage) exStorage_: ExStorage
     ) {
-        this.httpClient = httpClient_;
+        this.exStorage = exStorage_;
     }
 
 
-    *saveTodo(action: any) {
+    *createTodo(action: any) {
         try {
-            const func = this.httpClient.post;
             const todo: Todo = { // TODO
                 id: action.id,
                 text: action.text,
                 completed: false
             };
-            yield call(func, "api/", <any>todo);
+            yield call(this.exStorage.createTodo, <any>todo);
+        }
+        catch (error) {
+            alert(error.error); // TODO
+            yield error.error
+        }
+    }
+
+    *updateTodo(todo: Todo) {
+        try {
+            yield call(this.exStorage.updateTodo, <any>todo);
         }
         catch (error) {
             alert(error.error); // TODO
@@ -48,6 +60,15 @@ export class MainSaga {
         const nextTodoId: number = yield call(this.incrementId);
         const execAction: AddTodoExecAction = addTodoExec(nextTodoId, action.text);
         yield put(execAction)
+    }
+
+    *toggleTodo(_action:any) {
+        const action = <ToggleTodoAction>_action;
+        const todo: Todo = yield select((state: TodoState) => {
+            return state.todos.filter((t:Todo) => {return t.id == action.id})[0]
+        });
+        todo.completed = !todo.completed;
+        yield this.updateTodo(todo)
     }
 
 }
