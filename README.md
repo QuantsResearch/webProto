@@ -66,7 +66,8 @@ npm install
 export NODE_ENV=production     (for Windows, set NODE_ENV=production)
 npm run test:prod
 npm run build:webpack:prod
-sbt start
+sbt stage
+target/universal/stage/bin/webboilerplate -Dconfig.resource=dev.conf -Dlogger.resource=log/dev.xml
 ```
 
 # Browser Compatiability
