@@ -38,7 +38,7 @@ export default class Main {
         const sagaMiddleware = createSagaMiddleware();
         const middlewares:Middleware[] = [sagaMiddleware];
         const logger = createLogger();
-        if(logger){middlewares.push(logger);}
+        if(logger){middlewares.push(logger);} // logger must be the last
         const store:Redux.Store<TodoState | any> = createStore(todoApp, initial, applyMiddleware(...middlewares));
         store.subscribe(() => {
                 console.log("state updated:" + JSON.stringify(store.getState()));
