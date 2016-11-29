@@ -1,5 +1,4 @@
 import {injectable, inject} from "inversify";
-import "reflect-metadata";
 import {Todo} from "../model/reducerModel";
 import {HttpClient} from "../http/common";
 import TYPES from "../di/types";

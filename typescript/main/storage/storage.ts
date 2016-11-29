@@ -1,6 +1,5 @@
 import {injectable} from "inversify";
 import Cookies from "js-cookie"
-import "reflect-metadata";
 
 export interface DataStorage {
     clear(): void;

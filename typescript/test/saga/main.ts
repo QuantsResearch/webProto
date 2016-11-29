@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import {AddTodoAction, addTodo, AddTodoExecAction, addTodoExec} from "../../main/actions/mainAction";
 import {MainSaga} from "../../main/saga/main";
 import {call, put} from "redux-saga/effects";

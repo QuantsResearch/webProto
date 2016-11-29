@@ -12,7 +12,6 @@ import {DataStorage} from "./storage/storage";
 import {injectable, inject} from "inversify";
 import TYPES from "./di/types";
 import "../../scss/app.scss";
-import "reflect-metadata";
 import {MainSaga} from "./saga/main";
 
 @injectable()

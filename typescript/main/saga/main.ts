@@ -7,7 +7,6 @@ import {
 import {Todo} from "../model/reducerModel";
 import {injectable, inject} from "inversify";
 import TYPES from "../di/types";
-import "reflect-metadata";
 import {ExStorage} from "../exStorage/exStorage";
 
 @injectable()
