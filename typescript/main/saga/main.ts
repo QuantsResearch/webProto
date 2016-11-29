@@ -62,12 +62,12 @@ export class MainSaga {
     }
 
     *toggleTodo(_action:any) {
+        // toggle todo model is already done by reducer
         const action = <ToggleTodoAction>_action;
         const todo: Todo = yield select((state: TodoState) => {
             return state.todos.filter((t:Todo) => {return t.id == action.id})[0]
         });
-        todo.completed = !todo.completed;
-        yield this.updateTodo(todo)
+        this.updateTodo(todo)
     }
 
 }
