@@ -2,9 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 const inputdir = "typescript";
 const destdir = path.join(__dirname, "public", "javascripts");
+const tsmaindir = path.join(__dirname, inputdir, "main")
 
 module.exports = {
-    entry: ["babel-polyfill", path.join(__dirname, inputdir, "main", "index.tsx")],
+    entry: [path.join(tsmaindir, "preload.ts"), "babel-polyfill", path.join(tsmaindir, "index.ts")],
     output: {
         path: destdir,
         filename: 'app.js'
