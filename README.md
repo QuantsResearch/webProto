@@ -72,7 +72,11 @@ target/universal/stage/bin/webboilerplate -Dconfig.resource=dev.conf -Dlogger.re
 
 # Browser Compatiability
 
-IE9+ and modern browsers.
+IE11(*) and modern browsers.
+
+*If your target browsers are IE9+, for workaround, avoid using '@inject' feature of inversifyjs.
+Though @inject needs "import reflect-metadata", IE9 and 10 will be crashed if you import it.
+You can use 'kernel.get' method instead.  
 
 # Description
 
