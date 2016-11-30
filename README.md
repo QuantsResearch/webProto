@@ -22,8 +22,8 @@ Sample app developed with below tools set.
 * Server    
   * play2.5(scala)
 
-This is a simple Todo List App. 
-Born from redux sample app(http://redux.js.org/docs/basics/ExampleTodoList.html).
+This is a simple Todo List app. 
+Start from redux sample app(http://redux.js.org/docs/basics/ExampleTodoList.html).
 
 # Setup
 
@@ -82,4 +82,4 @@ You can use 'kernel.get' method instead.
 
 ## Client Side
 
-* Compile typescript to ES6, and transpile ES6 to ES5 with babel. Use babel-polyfill.
+* Transpile typescript to ES6, and transpile ES6 to ES5 with babel. Use babel-polyfill.
