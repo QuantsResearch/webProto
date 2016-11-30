@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const inputdir = "typescript";
+const destdir = path.join(__dirname, "public", "javascripts");
 const tsmaindir = path.join(__dirname, inputdir, "main")
 
 module.exports = {
